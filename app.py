@@ -15,7 +15,7 @@ def get_city_coordindates(city):
 
     payload={}
     headers = {
-        'x-api-key': 'HvjFKs+zzWXDAAveQTVmbA==L8ckPTnj4ETjdt5c'
+        'x-api-key': ''
     }
     response = requests.request("GET", url, headers=headers, data=payload)
     res = json.loads(response.text)
@@ -32,7 +32,7 @@ def get_city_coordindates(city):
 def update_map(long, lat, city, map_loc):
     print(float(long))
     print(float(lat))
-    m = folium.Map(location=[float(lat), float(long)], tiles="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png", attr="Stadia.AlidadeSmooth", zoom_start=13)
+    m = folium.Map(location=[float(lat), float(long)], tiles="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png?api_key=", attr="Stadia.AlidadeSmooth", zoom_start=13)
     tooltip = "Click for air quality data!"
     folium.Marker([float(lat), float(long)],
                   popup=folium.Popup(f"<strong> {city}, Colorado </strong>" ),
