@@ -8,7 +8,7 @@ for city in citieslist:
 
     querystring = {"city": city}
     headers = {
-        'x-api-key': "dd513ed6fd53fa889ba40d0b2dd6aa904f65901f2539abc71954643e23b9e8b1",
+        'x-api-key': "",
         'Content-type': "application/json"
         }
     res = requests.request("GET", url, headers=headers, params=querystring)

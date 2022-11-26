@@ -1,3 +1,4 @@
 *.pem
 usingEC2.txt
 .idea
+*creds*
