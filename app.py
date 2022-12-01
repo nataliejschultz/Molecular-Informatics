@@ -161,8 +161,8 @@ def results():
         #gets input from user and sets city equal to the input
         city = request.form.get("city") # city from user input
         long, lat = get_city_coordindates(city) # calls func, get user's requested city coords
-        path_to_map = "./templates/city.html" #sets path to html file that displays the map
-        update_map(long, lat, city, path_to_map) #passes in coords and user input to update the city.html page
+        path_to_map = "city.html" #sets path to html file that displays the map
+        update_map(long, lat, city, "./templates/" + path_to_map) #passes in coords and user input to update the city.html page
         return render_template(path_to_map) #render_template function renders the updated html page to the user 
 
 if __name__ == '__main__': 
