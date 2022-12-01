@@ -25,7 +25,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_1e54f5a326102bf379cf2f7d938449f4 {
+                #map_10db3958b7c83522b5b8a90075d7b922 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -38,16 +38,16 @@
 <body>
     
     
-            <div class="folium-map" id="map_1e54f5a326102bf379cf2f7d938449f4" ></div>
+            <div class="folium-map" id="map_10db3958b7c83522b5b8a90075d7b922" ></div>
         
 </body>
 <script>
     
     
-            var map_1e54f5a326102bf379cf2f7d938449f4 = L.map(
-                "map_1e54f5a326102bf379cf2f7d938449f4",
+            var map_10db3958b7c83522b5b8a90075d7b922 = L.map(
+                "map_10db3958b7c83522b5b8a90075d7b922",
                 {
-                    center: [39.2508229, -106.2925238],
+                    center: [39.613321, -105.016649],
                     crs: L.CRS.EPSG3857,
                     zoom: 13,
                     zoomControl: true,
@@ -59,40 +59,38 @@
 
         
     
-            var tile_layer_ddf791f1ee538c7faf70d352e0dd81c9 = L.tileLayer(
-                "https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png",
-                {"attribution": "Stadia.AlidadeSmooth", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
-            ).addTo(map_1e54f5a326102bf379cf2f7d938449f4);
+            var tile_layer_bcd3b1dbed21a8dcef7356ae6b1c9a70 = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}",
+                {"attribution": "Esri.NatGeoWorldMap", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_10db3958b7c83522b5b8a90075d7b922);
         
     
-            var marker_16831df2b806290e86c0a7642676ba75 = L.marker(
-                [39.2508229, -106.2925238],
+            var marker_73979f384bbac742a9a15a4869024ac7 = L.marker(
+                [39.613321, -105.016649],
                 {}
-            ).addTo(map_1e54f5a326102bf379cf2f7d938449f4);
+            ).addTo(map_10db3958b7c83522b5b8a90075d7b922);
         
     
-            var icon_c9a21a0dbe04931738aec589237faa93 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "cloud", "iconColor": "white", "markerColor": "purple", "prefix": "glyphicon"}
-            );
-            marker_16831df2b806290e86c0a7642676ba75.setIcon(icon_c9a21a0dbe04931738aec589237faa93);
+            var div_icon_25c0e8548c5d02a86c454e476083c9a2 = L.divIcon({"className": "empty", "html": "\n        \u003cdiv\u003e\u003csvg style= \"overflow: visible\"\u003e\n            \u003ccircle cx=\"0\" cy=\"0\" r=\"80\" fill=\"#8486e0\" opacity=\".4\"/\u003e\n            \u003ccircle cx=\"0\", cy=\"0\" r=\"50\" fill=\"#495280\", opacity=\".3\" \n        \u003c/svg\u003e\u003c/div\u003e"});
+            marker_73979f384bbac742a9a15a4869024ac7.setIcon(div_icon_25c0e8548c5d02a86c454e476083c9a2);
         
     
-        var popup_11290c287f3febbd783c1e871776700a = L.popup({"maxWidth": "100%"});
+        var popup_e05dbe27172ad1a020ac6219ecd999b2 = L.popup({"maxWidth": 130, "minWidth": 125});
 
         
             
-                var html_e27be1a3ba3da23c72aef8e5e8952bfc = $(`<div id="html_e27be1a3ba3da23c72aef8e5e8952bfc" style="width: 100.0%; height: 100.0%;"><strong> leadville, Colorado </strong></div>`)[0];
-                popup_11290c287f3febbd783c1e871776700a.setContent(html_e27be1a3ba3da23c72aef8e5e8952bfc);
+                var html_00d1250bc8499ba9bd6ada6e1c9f91c9 = $(`<div id="html_00d1250bc8499ba9bd6ada6e1c9f91c9" style="width: 100.0%; height: 100.0%;"><strong> Littleton, Colorado </strong>      <br>AQI = 45     <br> CO = 0.473     <br> NO2 = 4.639     <br>SO2 = 0.531     <br>OZONE = 26.085     <br>PM10 = 15.609     <br>PM25 = 10.874</div>`)[0];
+                popup_e05dbe27172ad1a020ac6219ecd999b2.setContent(html_00d1250bc8499ba9bd6ada6e1c9f91c9);
             
         
 
-        marker_16831df2b806290e86c0a7642676ba75.bindPopup(popup_11290c287f3febbd783c1e871776700a)
+        marker_73979f384bbac742a9a15a4869024ac7.bindPopup(popup_e05dbe27172ad1a020ac6219ecd999b2)
         ;
 
         
     
     
-            marker_16831df2b806290e86c0a7642676ba75.bindTooltip(
+            marker_73979f384bbac742a9a15a4869024ac7.bindTooltip(
                 `<div>
                      Click for air quality data!
                  </div>`,

@@ -1,4 +1,23 @@
-<form action="{{ url_for('results')}}" method="post">
-    <label for="city"> Enter Name of Colorado City:</label>
-    <input type="text" id="city" name="city">
-</form>
+<!DOCTYPE html>
+<html>
+<body>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='../static/style.css')}}"/>
+        <!-- link element can be simplified to the below if not using Flask -->
+        <!-- <link rel="stylesheet" href="filename='../static/style.css'"/> -->
+    </head>
+
+    <h1 >Colorado Air Quality Data</h1>  
+
+    <h2 id="subheading">
+        Enter the name of a Colorado city
+        to view air quality data
+    </h2>
+
+
+    <form action="{{ url_for('results')}}" method="post">
+        <input type="text" id="city" name="city">
+        <input type = "submit" value="Submit">
+    </form>
+</body>
+</html>

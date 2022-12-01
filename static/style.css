@@ -1,0 +1,96 @@
+html {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("./colorado_background.jpg");
+    height: 100%;
+    background-color: #cccccc;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    position: relative;
+
+}
+
+h1 {
+    display: block;
+    font-size: 3em;
+    font-family: "American Typewriter", serif;
+    font-weight: normal;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    
+}
+
+h2 {
+    text-align: center;
+    display: block;
+    font-family: "Lucida Console", "Courier New", monospace;
+    color: rgb(255, 251, 251);
+    font-size: 1.5em;
+    padding: 20px 5px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: normal
+}
+
+form {
+    text-align: center;
+    display: block;
+    margin-top: 5px;
+    margin-block-end: 1em;
+    position: absolute;
+    top: 60%;
+    left: 40%;
+}
+
+input[type="text" i] {
+    font-family: "Lucida Console", "Courier New", monospace;
+    padding: 2px 4px;
+    border: 2px solid rgb(67, 66, 71);
+    border-radius: 4px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+    background-color:rgba(255, 255, 255, 0.7);
+}
+
+input[type=text]:focus {
+    border: 3px solid rgb(226, 188, 83);
+    outline: none;
+  }
+
+input[type="submit" i] {
+    font-family: "Lucida Console", "Courier New", monospace;
+    appearance: auto;
+    user-select: none;
+    white-space: pre;
+    align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    box-sizing: border-box;
+    background-color: rgb(211, 195, 195);
+    /* hover: {background rgb(143, 134, 144)} */
+    /* background-color: buttonface; */
+    color: buttontext;
+    padding: 1px 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: buttonborder;
+    border-image: initial;
+}
+/* Photo by Mike Scheid on Unsplash */
