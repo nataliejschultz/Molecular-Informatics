@@ -9,13 +9,10 @@ import sys
 
 app = Flask(__name__, template_folder="templates")
 
-from app import app as application
-
 #passes in city from user input and outputs city's longitude
 #and latitude from API Ninjas Geocoding API.
 
-# if in ec2 instance (production or NOT dev), then call boto3 to get the secret values
-if sys.argv[1] == "dev":
+if sys.argv[1] is not None and sys.argv[1] == "dev":
     ambee_api_key = sys.argv[2]
     api_ninjas_key = sys.argv[3]
 else:
@@ -145,6 +142,7 @@ def update_map(long, lat, city, map_loc):
         </svg></div>""")).add_to(m)
     m.save(map_loc)
 
+from app import app as application
 
 #displays homepage (if get) or creates map if it's a post
 @app.route('/', methods=["GET", "POST"])
