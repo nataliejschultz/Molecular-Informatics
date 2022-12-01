@@ -142,7 +142,7 @@ def update_map(long, lat, city, map_loc):
         </svg></div>""")).add_to(m)
     m.save(map_loc)
 
-from app import app as application
+from app import app
 
 #displays homepage (if get) or creates map if it's a post
 @app.route('/', methods=["GET", "POST"])
@@ -166,4 +166,4 @@ def results():
         return render_template(path_to_map) #render_template function renders the updated html page to the user 
 
 if __name__ == '__main__': 
-    application.run(host="localhost", port=8080, debug=True)
+    app.run(host="localhost", port=8080, debug=True)
