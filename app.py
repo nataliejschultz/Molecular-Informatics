@@ -70,7 +70,6 @@ def update_map(long, lat, city, map_loc):
     aqdata_dict = (json.loads(aqdata))
     # since we only care about one dictionary in the list of dictionaries (aqdata_dict["stations"])
     # you don't need a for loop and instead can do this for all variables needed:
-    # for dictionary in aqdata_dict["stations"]:
     AQI = aqdata_dict["stations"][0].get("AQI")
     CO = aqdata_dict["stations"][0].get("CO")
     NO2 = aqdata_dict["stations"][0].get("NO2")
@@ -82,33 +81,69 @@ def update_map(long, lat, city, map_loc):
     #this series of ifs is used to set the color of the icon 
     #good air quality
     if int(AQI) <= 50:
-        outer_circle= "#8486e0"
-        inner_circle= "#495280"
+        outer_circle = "#8486e0"
+        inner_circle = "#495280"
+        air_quality_value = "Good"
 
     #moderate air quality 
     elif 51 <= int(AQI) <= 100:
-        outer_circle= "#258016"
-        inner_circle= "#13420b"
-
+        outer_circle = "#258016"
+        inner_circle = "#13420b"
+        air_quality_value = "Moderate" 
     #unhealthy for sensitive groups
     elif 101 <= int(AQI) <= 150:
-        outer_circle= "#e2e810"
-        inner_circle= "#9fa318"
+        outer_circle = "#e2e810"
+        inner_circle = "#9fa318"
+        air_quality_value = "Unhealthy for Sensitive Groups" 
 
     #unhealthy air quality
     elif 151 <= int(AQI) <= 200:
         outer_circle= "#eb9502"
         inner_circle= "#c47f08"
+        air_quality_value = "Unhealthy" 
 
     #very unhealthy air quality
     elif 201 <= int(AQI) <= 300:
-        outer_circle= "#e33809"
-        inner_circle= "#a12908" 
+        outer_circle = "#e33809"
+        inner_circle = "#a12908" 
+        air_quality_value = "Very Unhealthy" 
 
     #hazardous 
     elif 300 <= int(AQI):
-        outer_circle= "#f20a99"
-        inner_circle= "#990861"
+        outer_circle = "#f20a99"
+        inner_circle = "#990861"
+        air_quality_value = "Hazardous" 
+
+    #the standards are different for each of the particles, so they have their own conditionals.
+  
+    if int(CO) <= 100:
+        co_color  = "#4DCB7D"
+        co_quality = "Good"
+    elif 100 < int(CO):
+        co_color = "#e33809"
+        co_quality = "Poor"
+ 
+    if int(NO2) <= 100:
+        no2_color  = "#4DCB7D"
+        no2_quality = "Good"
+    elif 100 < int(NO2):
+        no2_color = "#e33809"
+        no2_quality = "Poor"
+    
+    if int(SO2) <= 75:
+        so2_color  = "#4DCB7D"
+        so2_quality = "Good"
+    elif 75 < int(SO2):
+        so2_color = "#e33809"
+        so2_quality = "Poor"
+
+    if int(OZONE) <= 70:
+        ozone_color  = "#4DCB7D"
+        ozone_quality = "Good"
+    elif 70 < int(OZONE):
+        ozone_color = "#e33809"
+        ozone_quality = "Poor"
+    
 
     # if there is more than 1 word in the split city string 
     if len(city.split(" ")) > 1:
@@ -119,31 +154,64 @@ def update_map(long, lat, city, map_loc):
         # otherwise just capitalize the one word in the city name
         city = city.capitalize()
 
-    popup_info = f"""<table style="height: 126px; width: 305px;">
-    <tbody>
+    popup_info = f"""<table style='width: 100%; white-space: nowrap; border: 1px solid white; border-collapse: collapse; font-family: "American Typewriter", serif; font-size: 20px; text-align: center;'>
     <tr>
-    <td style="background-color: {inner_circle};"><span style="color: #990861;">Institution Type </span></td>
-    <td style="width: 150px; background-color: {outer_circle} "</td>
-    </tr> </table>"""
-    
-    # popup_info = f"""<strong> {city}, Colorado </strong> 
-    # <br>AQI = {AQI}
-    # <br> CO = {CO}
-    # <br> NO2 = {NO2}
-    # <br>SO2 = {SO2}
-    # <br>OZONE = {OZONE}
-    # <br>PM10 = {PM10}
-    # <br>PM25 = {PM25}"""
+    <th style="text-align: center; width: 300px; padding: 15px; border-spacing: 10px; border: 1px solid white; border-collapse: collapse;"> Parameter </th>
+    <th style="text-align: center; width: 300px; padding: 15px; border-spacing: 10px; border: 1px solid white; border-collapse: collapse;"> Value </th>
+    <th style="text-align: center; width: 300px; padding: 15px; border-spacing: 10px; border: 1px solid white; border-collapse: collapse;"> Quality </th>
+    </tr>
 
-    # m = folium.Map(location=[float(lat), float(long)], tiles="https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}", attr="Esri.NatGeoWorldMap", zoom_start=13)
-    # AN INVALUABLE RESOURCE https://www.python-graph-gallery.com/312-add-markers-on-folium-map
+    <tr style="background-color: {outer_circle};">
+    <td style="width: 300px; padding: 15px; border-spacing: 10px; border: 1px solid white; border-collapse: collapse; "background-color: transparent;"><span style="color: #000000;"> AQI </span></td>
+    <td style="width: 300px; padding: 15px; border-spacing: 10px; border: 1px solid white; border-collapse: collapse; background-color: transparent;">{AQI}</td>
+    <td style="width: 300px; padding: 15px; border-spacing: 10px; border: 1px solid white; border-collapse: collapse; background-color: transparent;>"<span style="color: #000000;"> {air_quality_value} </span></td>
+    </tr> 
+    
+    <tr style="background-color: {co_color};">
+    <td style="width: 300px; padding: 15px; border-spacing: 10px; border: 1px solid white; border-collapse: collapse; "background-color: transparent;"><span style="color: #000000;"> CO </span></td>
+    <td style="width: 300px; padding: 15px; border-spacing: 10px; border: 1px solid white; border-collapse: collapse; background-color: transparent;"> {CO} (ppm)</td>
+    <td style="width: 300px; padding: 15px; border-spacing: 10px; border: 1px solid white; border-collapse: collapse; background-color: transparent;>"<span style="color: #000000;"> {co_quality} </span></td>
+    </tr>
+
+    <tr style="background-color: {no2_color};">
+    <td style="width: 300px; padding: 15px; border-spacing: 10px; border: 1px solid white; border-collapse: collapse;"background-color: transparent;"><span style="color: #000000;"> NO2 </span></td></td>
+    <td style="width: 300px; padding: 15px; border-spacing: 10px; border: 1px solid white; border-collapse: collapse; background-color: transparent;>"<span style="color: #000000;"> {NO2} (ppb) </span></td>
+    <td style="width: 300px; padding: 15px; border-spacing: 10px; border: 1px solid white; border-collapse: collapse; background-color: transparent;>"<span style="color: #000000;"> {no2_quality} </span></td>
+    </tr>
+
+    <tr style="background-color: {so2_color};">
+    <td style="width: 300px; padding: 15px; border-spacing: 10px; border: 1px solid white; border-collapse: collapse; "background-color: transparent;"><span style="color: #000000;"> SO2 </span></td>
+    <td style="width: 300px; padding: 15px; border-spacing: 10px; border: 1px solid white; border-collapse: collapse; background-color: transparent;>"<span style="color: #000000;"> {SO2} (ppb) </span></td>
+    <td style="width: 300px; padding: 15px; border-spacing: 10px; border: 1px solid white; border-collapse: collapse; background-color: transparent;>"<span style="color: #000000;"> {so2_quality} </span></td>
+    </tr>
+
+    <tr style="background-color: {ozone_color};">
+    <td style="width: 300px; padding: 15px; border-spacing: 10px; border: 1px solid white; border-collapse: collapse; "background-color: transparent;"><span style="color: #000000;"> OZONE </span></td>
+    <td style="width: 300px; padding: 15px; border-spacing: 10px; border: 1px solid white; border-collapse: collapse; background-color: transparent;>"<span style="color: #000000;"> {OZONE} (ppb) </span></td>
+    <td style="width: 300px; padding: 15px; border-spacing: 10px; border: 1px solid white; border-collapse: collapse; background-color: transparent;>"<span style="color: #000000;"> {ozone_quality} </span></td>
+    </tr>
+
+    <tr style="background-color: #E7E7F4;">
+    <td style="width: 300px; padding: 15px; border-spacing: 10px; border: 1px solid white; border-collapse: collapse; "background-color: transparent;"><span style="color: #000000;"> PM10 </span></td>
+    <td style="width: 300px; padding: 15px; border-spacing: 10px; border: 1px solid white; border-collapse: collapse; background-color: transparent;>"<span style="color: #000000;"> {PM10} (μg/m3) </span></td>
+    <td style="width: 300px; padding: 15px; border-spacing: 10px; border: 1px solid white; border-collapse: collapse; background-color: transparent;>"<span style="color: #000000;"> N/A </span></td>
+    </tr>
+
+    <tr style="background-color: #E7E7F4;">
+    <td style="width: 300px; padding: 15px; border-spacing: 10px; border: 1px solid white; border-collapse: collapse; "background-color: transparent;"><span style="color: #000000;"> PM2.5 </span></td>
+    <td style="width: 300px; padding: 15px; border-spacing: 10px; border: 1px solid white; border-collapse: collapse; background-color: transparent;>"<span style="color: #000000;"> {PM25} (ug/m3) </span></td>
+    <td style="width: 300px; padding: 15px; border-spacing: 10px; border: 1px solid white; border-collapse: collapse; background-color: transparent;>"<span style="color: #000000;"> N/A </span></td>
+    </tr>
+
+    </table>"""
+  
     m = folium.Map(location=[float(lat), float(long)], tiles="https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}", attr="Esri.NatGeoWorldMap", zoom_start=13)
-    tooltip = "Click for air quality data!"
+    tooltip_format = "<strong>Click for air quality data!</strong>"
     # folium.element.CssLink("./templates/mapstyle.css", download=True)
     folium.Marker([float(lat), float(long)],
                     # popup=folium.Popup(popup_info, min_width=125, max_width=130),
                     popup = folium.Popup(popup_info),
-                    tooltip = tooltip,
+                    tooltip = folium.map.Tooltip(tooltip_format, style='font-family: "American Typewriter", serif;'),
                     icon = folium.DivIcon(html=f"""
         <div><svg style= "overflow: visible">
             <circle cx="0" cy="0" r="80" fill="{outer_circle}" opacity=".4"/>
@@ -176,4 +244,4 @@ if __name__ == '__main__':
     if len(sys.argv) > 1:
         app.run(host="localhost", port=8080, debug=True)
     else:
-        app.run(host="0.0.0.0", port=8080)
+        app.run(host="0.0.0.0", port=8080, debug=True)

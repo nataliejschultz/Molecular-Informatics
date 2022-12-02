@@ -3,10 +3,12 @@
 <body>
     <head>
         <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='../static/style.css')}}"/> -->
-        <!-- link element can be simplified to the below if not using Flask -->
+        
+        <!-- link element can be simplified to the below if not using Flask/running locally -->
         <link rel="stylesheet" type="text/css" href="../static/style.css"/>
     </head>
 
+    <!-- sets main heading element -->
     <h1 >Colorado Air Quality Data</h1>  
 
     <h2 id="subheading">
@@ -14,7 +16,7 @@
         to view air quality data
     </h2>
 
-
+<!-- this is how the submit button works. form element redirects post input to the results route. -->
     <form action="{{ url_for('results')}}" method="post">
         <input type="text" id="city" name="city">
         <input type = "submit" value="Submit">
