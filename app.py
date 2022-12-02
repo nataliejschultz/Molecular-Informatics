@@ -12,7 +12,7 @@ api_ninjas_key = ''
 
 app = Flask(__name__, template_folder="templates")
 
-if sys.argv[1] is not None and sys.argv[1] == "dev":
+if len(sys.argv) > 1:
     ambee_api_key = sys.argv[2]
     api_ninjas_key = sys.argv[3]
 else:
@@ -66,7 +66,6 @@ def update_map(long, lat, city, map_loc):
         'Content-type': "application/json"
     }
     res = requests.request("GET", url, headers=headers, params=querystring)
-    print(res.text)
     aqdata = res.text
     aqdata_dict = (json.loads(aqdata))
     # since we only care about one dictionary in the list of dictionaries (aqdata_dict["stations"])
@@ -123,9 +122,9 @@ def update_map(long, lat, city, map_loc):
     popup_info = f"""<table style="height: 126px; width: 305px;">
     <tbody>
     <tr>
-    <td style="background-color:"+ {inner_circle} ;"><span style="color: #ffffff;">Institution Type </span></td>
-    <td style="width: 150px;background-color: {outer_circle} </td>
-    </tr> """
+    <td style="background-color: {inner_circle};"><span style="color: #990861;">Institution Type </span></td>
+    <td style="width: 150px; background-color: {outer_circle} "</td>
+    </tr> </table>"""
     
     # popup_info = f"""<strong> {city}, Colorado </strong> 
     # <br>AQI = {AQI}
@@ -154,7 +153,6 @@ def update_map(long, lat, city, map_loc):
 
 
 #displays homepage (if get) or creates map if it's a post
-print("hey")
 
 @app.route('/', methods=["GET", "POST"], endpoint='root')
 def root():
@@ -175,4 +173,7 @@ def results():
         return render_template(path_to_map) #render_template function renders the updated html page to the user 
 
 if __name__ == '__main__': 
-    app.run(host="localhost", port=8080, debug=True)
+    if len(sys.argv) > 1:
+        app.run(host="localhost", port=8080, debug=True)
+    else:
+        app.run(host="0.0.0.0", port=8080)
