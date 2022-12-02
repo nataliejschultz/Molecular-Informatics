@@ -14,5 +14,5 @@ pip3 install requirements.txt
 python3 app.py ambee_api_key api_ninjas_apikey
 
 
-** prerequisites **
-    * Need to sign up for api keys for Ambee and Api-Ninjas' Geocoding api
+## Prerequisites
+    * Must sign up for Ambee and Api-Ninjas' Geocoding api to obtain API keys
