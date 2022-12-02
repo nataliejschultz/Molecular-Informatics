@@ -13,8 +13,8 @@ api_ninjas_key = ''
 app = Flask(__name__, template_folder="templates")
 
 if len(sys.argv) > 1:
-    ambee_api_key = sys.argv[2]
-    api_ninjas_key = sys.argv[3]
+    ambee_api_key = sys.argv[1]
+    api_ninjas_key = sys.argv[2]
 else:
     secret_name = "MolecularInformatics/FinalProject/AirQualityData"
     #we can't access anything in other regions, so we have to set it to the same region as the EC2 instance
