@@ -10,8 +10,9 @@ appears and displays different air quality metrics for the user to analyze.
 
 ## Example command to run locally
 
-pip3 install requirements.txt
-python3 app.py ambee_api_key api_ninjas_apikey
+`pip3 install requirements.txt`
+
+`python3 app.py ambee_api_key api_ninjas_apikey`
 
 
 ## Prerequisites
